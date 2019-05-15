@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_200542) do
+ActiveRecord::Schema.define(version: 2019_05_15_193529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 2019_05_13_200542) do
     t.string "province_codes", default: [], array: true
     t.boolean "fixed_ecpm", default: true, null: false
     t.bigint "assigned_property_ids", default: [], null: false, array: true
+    t.integer "hourly_budget_cents", default: 0, null: false
+    t.string "hourly_budget_currency", default: "USD", null: false
     t.index "lower((name)::text)", name: "index_campaigns_on_name"
     t.index ["assigned_property_ids"], name: "index_campaigns_on_assigned_property_ids", using: :gin
     t.index ["core_hours_only"], name: "index_campaigns_on_core_hours_only"

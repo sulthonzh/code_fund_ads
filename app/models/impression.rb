@@ -58,6 +58,9 @@ class Impression < ApplicationRecord
   scope :between, ->(start_date, end_date = nil) {
     where displayed_at_date: Date.coerce(start_date)..Date.coerce(end_date)
   }
+  scope :time_between, ->(start_time, end_time) {
+    where displayed_at: start_time.to_time..(end_time || start_time).to_time
+  }
   scope :scoped_by, ->(record) {
     case record
     when Campaign then where campaign_id: record.id
